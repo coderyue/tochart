@@ -18,17 +18,16 @@ public interface SankeyUtil {
 
     /**
      * 桑基图工具类
-     * 参数的map中需要source和target和cnt
+     * 参数的map中需要source和target和value
      *
      * @param mapList
      * @return
      */
-    default Map<String, Object> getSankeyUtil(List<Map<String, Object>> mapList, String source, String target, String value) {
+    default Map<String, Object> getSankeyUtil(List<Map<String, Object>> mapList) {
         List<Object> nameList = new ArrayList<>(mapList.size());
         mapList.forEach(item -> {
-            Object s = item.get(source);
-            Object t = item.get(target);
-            item.put(StaticUtil.VALUE, item.get(value));
+            Object s = item.get(StaticUtil.SOURCE);
+            Object t = item.get(StaticUtil.TARGET);
             if (s != null && t != null) {
                 nameList.add(s);
                 nameList.add(t);
