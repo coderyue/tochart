@@ -52,6 +52,19 @@ public interface StaticUtil {
 
     String CHILDREN = "children";
 
+    //
+    //  饼图常量
+    //
+
+    String SOURCE = "source";
+
+    String TARGET = "target";
+
+    String LINKS = "links";
+
+    String NODES = "nodes";
+
+
     /**
      * 返回指定格式的DateTimeFormatter
      * @param pattern
