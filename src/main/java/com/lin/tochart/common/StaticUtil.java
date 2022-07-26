@@ -81,8 +81,8 @@ public interface StaticUtil {
      * @param endTime 结束时间
      * @param toFormatter 要格式化成为的格式
      */
-    default void generatorDate(List<String> xData, String startTime,
-                               String endTime, DateTimeFormatter toFormatter, ChronoUnit addUnit) {
+    default void generatorDate(List<String> xData, String startTime, String endTime,
+                               DateTimeFormatter toFormatter, ChronoUnit addUnit) {
         generatorDate(xData, startTime, endTime, toFormatter, 1, addUnit);
     }
 
