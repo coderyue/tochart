@@ -64,6 +64,16 @@ public interface StaticUtil {
 
     String NODES = "nodes";
 
+    // 关系图常量
+
+    String ID = "id";
+
+    String CATEGORIES = "categories";
+
+    String CATEGORY = "category";
+
+    String SYMBOL_SIZE = "symbolSize";
+
 
     /**
      * 返回指定格式的DateTimeFormatter
