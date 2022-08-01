@@ -22,13 +22,13 @@ public interface TreeMapUtil {
      *                      Collectors.groupingBy(item -> (String) item.get(level2),
      *                         Collectors.groupingBy(item -> (String) item.get(level3),
      *                                 Collectors.groupingBy(item -> (String) item.get(level4))))))
-     * @param endChile 最后节点的child名称
+     * @param endChild 最后节点的child名称
      * @param v        取值的value
      * @return
      */
-    default List<Map<String, Object>> getTreeMap(Map<String, ?> collect, String endChile, String v) {
+    default List<Map<String, Object>> getTreeMap(Map<String, ?> collect, String endChild, String v) {
         List<Map<String, Object>> resultList = new ArrayList<>();
-        getResult(resultList, collect, endChile, v);
+        getResult(resultList, collect, endChild, v);
         return resultList;
     }
 
