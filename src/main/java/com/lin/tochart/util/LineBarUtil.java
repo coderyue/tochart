@@ -51,14 +51,14 @@ public interface LineBarUtil extends StaticUtil{
      * @return
      */
     default Map<String, Object> toLineOrBar(List<Map<String, Object>> mapList, String startTime, String endTime,
-                                            DateTimeFormatter toFormatter, ChronoUnit addUnit, String x, String y) {
+                                            String toFormatter, ChronoUnit addUnit, String x, String y) {
         List<String> xData = new ArrayList<>(mapList.size());
-        generatorDate(xData, startTime, endTime, toFormatter, addUnit);
+        generatorDate(xData, startTime, endTime, DateTimeFormatter.ofPattern(toFormatter), addUnit);
         List<Object> yData = new ArrayList<>(mapList.size());
 
         Map<String, Object> xyMap = mapList.stream().collect(Collectors.toMap(item -> (String) item.get(x), item -> item.get(y)));
 
-        xData.forEach(item -> yData.add(xyMap.get(x)));
+        xData.forEach(item -> yData.add(xyMap.get(item)));
 
         Map<String, Object> resultMap = new HashMap<>();
         resultMap.put(StaticUtil.X_DATA, xData);
@@ -67,26 +67,24 @@ public interface LineBarUtil extends StaticUtil{
     }
 
     /**
-     * 多折线/多柱状图
-     * 横轴为时间， 可以对时间进行补齐
-     *
+     * 多折线图/柱状图， 横纵坐标都不为时间
      * @param mapList
      * @param x
      * @param y
-     * @param value   值
+     * @param value
      * @return
      */
-    default Map<String, Object> toMultiLineOrBar(List<Map<String, Object>> mapList, String startTime, String endTime,
-                                                 DateTimeFormatter toFormatter, ChronoUnit addUnit,
-                                                 String x, String y, String value) {
+    default Map<String, Object> toMultiLineOrBar(List<Map<String, Object>> mapList, String x, String y, String value) {
         List<Map<String, Object>> dataMapList = new ArrayList<>();
-        List<String> xData = new ArrayList<>(mapList.size() << 1);
-        generatorDate(xData, startTime, endTime, toFormatter, addUnit);
+        List<String> xData = mapList.stream().map(item -> item.get(x).toString()).collect(Collectors.toList());
+        return getMultiLineOrBar(mapList, x, y, value, dataMapList, xData);
+    }
+
+    default Map<String, Object> getMultiLineOrBar(List<Map<String, Object>> mapList, String x, String y, String value, List<Map<String, Object>> dataMapList, List<String> xData) {
         Map<Object, Map<Object, Double>> collect = mapList.stream().collect(Collectors.groupingBy(item -> item.get(y),
                 Collectors.groupingBy(item -> item.get(x),
                         Collectors.summingDouble(item -> Double.parseDouble(item.get(value).toString())))));
         List<String> nameList = mapList.stream().map(item -> ((String) item.get(y))).distinct().collect(Collectors.toList());
-
         nameList.forEach(name -> {
             Map<String, Object> tempMap = new HashMap<>();
             dataMapList.add(tempMap);
@@ -95,16 +93,39 @@ public interface LineBarUtil extends StaticUtil{
             tempMap.putIfAbsent(StaticUtil.DATA, data);
             xData.forEach(xx -> {
                 // 这里没有的数据不进行补0，就是null
-                Double v = collect.get(y).get(xx);
+                Double v = collect.get(name).get(xx);
                 data.add(v);
             });
         });
 
         Map<String, Object> resultMap = new HashMap<>();
-        resultMap.put("series", dataMapList);
-        resultMap.put("legend", new HashMap<String, Object>() {{this.put("data", nameList);}});
-        resultMap.put("xAxis", new HashMap<String, Object>() {{this.put("data", xData);}});
+        resultMap.put(X_DATA, xData);
+        resultMap.put(Y_DATA, dataMapList);
+        resultMap.put(NAME, nameList);
         return resultMap;
+    }
+
+    /**
+     * 多折线/多柱状图
+     * 横轴为时间， 可以对时间进行补齐
+     *
+     * @param mapList
+     * @param startTime
+     * @param endTime
+     * @param toFormatter
+     * @param addUnit
+     * @param x
+     * @param y
+     * @param value   值
+     * @return
+     */
+    default Map<String, Object> toMultiLineOrBar(List<Map<String, Object>> mapList, String startTime, String endTime,
+                                                 String toFormatter, ChronoUnit addUnit,
+                                                 String x, String y, String value) {
+        List<Map<String, Object>> dataMapList = new ArrayList<>();
+        List<String> xData = new ArrayList<>(mapList.size() << 1);
+        generatorDate(xData, startTime, endTime, DateTimeFormatter.ofPattern(toFormatter), addUnit);
+        return getMultiLineOrBar(mapList, x, y, value, dataMapList, xData);
     }
 
 }

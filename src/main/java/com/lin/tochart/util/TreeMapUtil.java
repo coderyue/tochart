@@ -26,7 +26,7 @@ public interface TreeMapUtil {
      * @param v        取值的value
      * @return
      */
-    default List<Map<String, Object>> getTreeMap(Map<String, ?> collect, String endChild, String v) {
+    default List<Map<String, Object>> toTreeMap(Map<String, ?> collect, String endChild, String v) {
         List<Map<String, Object>> resultList = new ArrayList<>();
         getResult(resultList, collect, endChild, v);
         return resultList;

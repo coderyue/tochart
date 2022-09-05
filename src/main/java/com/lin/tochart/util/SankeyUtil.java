@@ -23,7 +23,7 @@ public interface SankeyUtil {
      * @param mapList
      * @return
      */
-    default Map<String, Object> getSankeyUtil(List<Map<String, Object>> mapList) {
+    default Map<String, Object> toSankey(List<Map<String, Object>> mapList) {
         List<Object> nameList = new ArrayList<>(mapList.size());
         mapList.forEach(item -> {
             Object s = item.get(StaticUtil.SOURCE);

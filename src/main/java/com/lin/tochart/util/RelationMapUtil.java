@@ -25,7 +25,7 @@ public interface RelationMapUtil {
      * @param targetCategoryKey 关联的对象分组的key
      * @return
      */
-    default Map<String, Object> getRelationMap(List<Map<String, Object>> mapList, String sourceNodeKey, String sourceCategoryKey, String targetNodeKey, String targetCategoryKey) {
+    default Map<String, Object> toRelationMap(List<Map<String, Object>> mapList, String sourceNodeKey, String sourceCategoryKey, String targetNodeKey, String targetCategoryKey) {
         Map<String, Integer> categoryMap = new LinkedHashMap<>();
         Map<String, Map<String, Object>> nodeMap = new LinkedHashMap<>();
         List<Map<String, Object>> links = new ArrayList<>();

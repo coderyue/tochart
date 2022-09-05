@@ -29,6 +29,11 @@ public interface StaticUtil {
 
     String DATE_TIME_FORMAT = "yyyy-MM-dd HH:mm:ss";
 
+    /**
+     * 一些情况下， null替换为未知
+     */
+    String unKnow = "未知";
+
     //
     //  饼图,柱状图,常量
     //
@@ -90,12 +95,22 @@ public interface StaticUtil {
      * @param startTime 开始时间 这里需要到天， 或者到秒， 只接受这两种格式
      * @param endTime 结束时间
      * @param toFormatter 要格式化成为的格式
+     * @param addUnit 步长单位
      */
     default void generatorDate(List<String> xData, String startTime, String endTime,
                                DateTimeFormatter toFormatter, ChronoUnit addUnit) {
         generatorDate(xData, startTime, endTime, toFormatter, 1, addUnit);
     }
 
+    /**
+     * 生成横轴坐标日期集合
+     * @param xData
+     * @param startTime
+     * @param endTime
+     * @param toFormatter
+     * @param addSize
+     * @param addUnit
+     */
     default void generatorDate(List<String> xData, String startTime,
                                String endTime, DateTimeFormatter toFormatter,
                                long addSize, ChronoUnit addUnit) {

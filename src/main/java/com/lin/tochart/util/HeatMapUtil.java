@@ -2,7 +2,6 @@ package com.lin.tochart.util;
 
 import com.lin.tochart.common.StaticUtil;
 
-import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -19,16 +18,12 @@ public interface HeatMapUtil {
     /**
      * 获取热力图
      * @param mapList
-     * @param startTime
-     * @param endTime
-     * @param addUnit
      * @param x
      * @param y
      * @param value
      * @return
      */
-    default Map<String, Object> toMultiLineOrBar(List<Map<String, Object>> mapList, String startTime, String endTime,
-                                                 ChronoUnit addUnit, String x, String y, String value) {
+    default Map<String, Object> toHeatMap(List<Map<String, Object>> mapList, String x, String y, String value) {
         Map<String, Object> resultMap = new HashMap<>();
         List<String> xList = mapList.stream().map(item -> (String) item.get(x)).distinct().sorted().collect(Collectors.toList());
         List<String> yList = mapList.stream().map(item -> (String) item.get(y)).distinct().collect(Collectors.toList());
@@ -42,7 +37,8 @@ public interface HeatMapUtil {
                 cellData.add(i);
                 cellData.add(j);
                 Double cellV = collect.get(yList.get(i)).get(xList.get(j));
-                cellData.add(cellV == null ? 0d : cellV);
+//                cellData.add(cellV == null ? 0d : cellV);
+                cellData.add(cellV);
                 vList.add(cellData);
             }
         }
