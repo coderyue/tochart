@@ -1,6 +1,6 @@
 package com.lin.tochart.util;
 
-import com.lin.tochart.common.StaticUtil;
+import com.lin.tochart.common.StaticValue;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -43,9 +43,9 @@ public interface HeatMapUtil {
             }
         }
 
-        resultMap.put(StaticUtil.X_DATA, xList);
-        resultMap.put(StaticUtil.Y_DATA, yList);
-        resultMap.put(StaticUtil.DATA, vList);
+        resultMap.put(StaticValue.X_DATA, xList);
+        resultMap.put(StaticValue.Y_DATA, yList);
+        resultMap.put(StaticValue.DATA, vList);
 
         return resultMap;
     }

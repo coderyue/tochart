@@ -1,6 +1,6 @@
 package com.lin.tochart.util;
 
-import com.lin.tochart.common.StaticUtil;
+import com.lin.tochart.common.StaticValue;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -26,8 +26,8 @@ public interface SankeyUtil {
     default Map<String, Object> toSankey(List<Map<String, Object>> mapList) {
         List<Object> nameList = new ArrayList<>(mapList.size());
         mapList.forEach(item -> {
-            Object s = item.get(StaticUtil.SOURCE);
-            Object t = item.get(StaticUtil.TARGET);
+            Object s = item.get(StaticValue.SOURCE);
+            Object t = item.get(StaticValue.TARGET);
             if (s != null && t != null) {
                 nameList.add(s);
                 nameList.add(t);
@@ -35,13 +35,13 @@ public interface SankeyUtil {
         });
         List<Map<String, Object>> nameMapList = nameList.stream().distinct().sorted().map(item -> {
             Map<String, Object> map = new HashMap<>();
-            map.put(StaticUtil.NAME, item);
+            map.put(StaticValue.NAME, item);
             return map;
         }).collect(Collectors.toList());
 
         Map<String, Object> dataMap = new HashMap<>();
-        dataMap.put(StaticUtil.LINKS, mapList);
-        dataMap.put(StaticUtil.NODES, nameMapList);
+        dataMap.put(StaticValue.LINKS, mapList);
+        dataMap.put(StaticValue.NODES, nameMapList);
         return dataMap;
     }
 

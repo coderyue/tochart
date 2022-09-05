@@ -1,6 +1,6 @@
 package com.lin.tochart.util;
 
-import com.lin.tochart.common.StaticUtil;
+import com.lin.tochart.common.StaticValue;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -25,8 +25,8 @@ public interface PieUtil {
         List<Map<String, Object>> resultMapList = new ArrayList<>(mapList.size());
         mapList.forEach(item -> {
             Map<String, Object> tempMap = new HashMap<>();
-            tempMap.put(StaticUtil.NAME, item.get(name));
-            tempMap.put(StaticUtil.VALUE, item.get(value));
+            tempMap.put(StaticValue.NAME, item.get(name));
+            tempMap.put(StaticValue.VALUE, item.get(value));
             resultMapList.add(tempMap);
         });
         return resultMapList;

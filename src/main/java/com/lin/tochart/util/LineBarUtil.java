@@ -1,6 +1,6 @@
 package com.lin.tochart.util;
 
-import com.lin.tochart.common.StaticUtil;
+import com.lin.tochart.common.StaticValue;
 
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
  * @author lin
  * @date   2022/7/24
  **/
-public interface LineBarUtil extends StaticUtil{
+public interface LineBarUtil extends StaticValue {
 
     /**
      * 返回折线图/柱状图结构
@@ -32,8 +32,8 @@ public interface LineBarUtil extends StaticUtil{
             yData.add(item.get(y));
         });
         Map<String, Object> resultMap = new HashMap<>();
-        resultMap.put(StaticUtil.X_DATA, xData);
-        resultMap.put(StaticUtil.Y_DATA, yData);
+        resultMap.put(StaticValue.X_DATA, xData);
+        resultMap.put(StaticValue.Y_DATA, yData);
         return resultMap;
     }
 
@@ -61,8 +61,8 @@ public interface LineBarUtil extends StaticUtil{
         xData.forEach(item -> yData.add(xyMap.get(item)));
 
         Map<String, Object> resultMap = new HashMap<>();
-        resultMap.put(StaticUtil.X_DATA, xData);
-        resultMap.put(StaticUtil.Y_DATA, yData);
+        resultMap.put(StaticValue.X_DATA, xData);
+        resultMap.put(StaticValue.Y_DATA, yData);
         return resultMap;
     }
 
@@ -88,9 +88,9 @@ public interface LineBarUtil extends StaticUtil{
         nameList.forEach(name -> {
             Map<String, Object> tempMap = new HashMap<>();
             dataMapList.add(tempMap);
-            tempMap.putIfAbsent(StaticUtil.NAME, name);
+            tempMap.putIfAbsent(StaticValue.NAME, name);
             List<Object> data = new ArrayList<>();
-            tempMap.putIfAbsent(StaticUtil.DATA, data);
+            tempMap.putIfAbsent(StaticValue.DATA, data);
             xData.forEach(xx -> {
                 // 这里没有的数据不进行补0，就是null
                 Double v = collect.get(name).get(xx);

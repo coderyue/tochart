@@ -12,7 +12,7 @@ import java.util.List;
  * @author lin
  * @date 2022/7/24
  **/
-public interface StaticUtil {
+public interface StaticValue {
 
     //
     //  日期格式化常量

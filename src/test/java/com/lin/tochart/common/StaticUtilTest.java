@@ -7,7 +7,7 @@ import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 
-public class StaticUtilTest implements StaticUtil {
+public class StaticUtilTest implements StaticValue {
 
     @Test
     public void generatorDateTest() {

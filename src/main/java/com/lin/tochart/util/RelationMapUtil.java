@@ -1,6 +1,6 @@
 package com.lin.tochart.util;
 
-import com.lin.tochart.common.StaticUtil;
+import com.lin.tochart.common.StaticValue;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -33,14 +33,14 @@ public interface RelationMapUtil {
             Map<String, Object> sourceNode = createNode(map, categoryMap, nodeMap, sourceCategoryKey, sourceNodeKey);
             Map<String, Object> targetNode = createNode(map, categoryMap, nodeMap, targetCategoryKey, targetNodeKey);
             links.add(new HashMap<String, Object>(){{
-                put(StaticUtil.SOURCE, sourceNode.get(StaticUtil.ID));
-                put(StaticUtil.TARGET, targetNode.get(StaticUtil.ID));
+                put(StaticValue.SOURCE, sourceNode.get(StaticValue.ID));
+                put(StaticValue.TARGET, targetNode.get(StaticValue.ID));
             }});
         });
         return new HashMap<String, Object>(){{
-            put(StaticUtil.NODES, nodeMap.values());
-            put(StaticUtil.LINKS, links);
-            put(StaticUtil.CATEGORIES, categoryMap.values());
+            put(StaticValue.NODES, nodeMap.values());
+            put(StaticValue.LINKS, links);
+            put(StaticValue.CATEGORIES, categoryMap.values());
         }};
     }
 
@@ -48,13 +48,13 @@ public interface RelationMapUtil {
         String nodeName = map.get(nodeKey).toString();
         Integer categoryIndex = categoryMap.computeIfAbsent(map.get(categoryKey).toString(), k -> categoryMap.size() + 1);
         Map<String, Object> node = nodeMap.computeIfAbsent(nodeName, k -> new HashMap<String, Object>(){{
-            put(StaticUtil.ID, String.valueOf(nodeMap.size()));
-            put(StaticUtil.NAME, nodeName);
-            put(StaticUtil.CATEGORY, categoryIndex);
-            put(StaticUtil.VALUE, 0);
+            put(StaticValue.ID, String.valueOf(nodeMap.size()));
+            put(StaticValue.NAME, nodeName);
+            put(StaticValue.CATEGORY, categoryIndex);
+            put(StaticValue.VALUE, 0);
         }});
-        node.put(StaticUtil.VALUE, ((int) node.get(StaticUtil.VALUE)) + 1);
-        node.put(StaticUtil.SYMBOL_SIZE, node.get(StaticUtil.VALUE));
+        node.put(StaticValue.VALUE, ((int) node.get(StaticValue.VALUE)) + 1);
+        node.put(StaticValue.SYMBOL_SIZE, node.get(StaticValue.VALUE));
         return node;
     }
 }

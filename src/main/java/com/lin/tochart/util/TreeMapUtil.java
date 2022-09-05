@@ -1,6 +1,6 @@
 package com.lin.tochart.util;
 
-import com.lin.tochart.common.StaticUtil;
+import com.lin.tochart.common.StaticValue;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -37,15 +37,15 @@ public interface TreeMapUtil {
             if (dbValue instanceof Map && ((Map<String, ?>) dbValue).size() > 0) {
                 List<Map<String, Object>> childList = new ArrayList<>();
                 Map<String, Object> tempMap = new HashMap<>();
-                tempMap.put(StaticUtil.NAME, dbName);
-                tempMap.put(StaticUtil.CHILDREN, childList);
+                tempMap.put(StaticValue.NAME, dbName);
+                tempMap.put(StaticValue.CHILDREN, childList);
                 resultList.add(tempMap);
                 getResult(childList, (Map<String, ?>) dbValue, level4, v);
             } else if (dbValue instanceof List && ((List<?>) dbValue).size() > 0) {
                 Map<String, Object> map = new HashMap<>();
                 ((List<?>) dbValue).forEach(item -> {
-                    map.put(StaticUtil.NAME, ((Map<String, ?>) item).get(level4));
-                    map.put(StaticUtil.VALUE, ((Map<String, ?>) item).get(v));
+                    map.put(StaticValue.NAME, ((Map<String, ?>) item).get(level4));
+                    map.put(StaticValue.VALUE, ((Map<String, ?>) item).get(v));
                     resultList.add(map);
                 });
             }

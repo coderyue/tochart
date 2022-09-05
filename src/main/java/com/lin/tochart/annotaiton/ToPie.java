@@ -1,7 +1,7 @@
 package com.lin.tochart.annotaiton;
 
 import com.lin.tochart.common.ChartType;
-import com.lin.tochart.common.StaticUtil;
+import com.lin.tochart.common.StaticValue;
 
 import java.lang.annotation.*;
 
@@ -12,7 +12,7 @@ import java.lang.annotation.*;
 @ToChart(type = ChartType.PIE)
 public @interface ToPie {
 
-    String name() default StaticUtil.NAME;
+    String name() default StaticValue.NAME;
 
-    String value() default StaticUtil.VALUE;
+    String value() default StaticValue.VALUE;
 }

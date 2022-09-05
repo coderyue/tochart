@@ -10,11 +10,12 @@
   </parent>
   <groupId>com.example</groupId>
   <artifactId>tochart</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>0.1</version>
   <name>tochart</name>
   <description>tochart</description>
   <properties>
     <java.version>1.8</java.version>
+    <compile.version>8</compile.version>
     <junit.version>4.13.2</junit.version>
   </properties>
   <dependencies>
@@ -27,12 +28,41 @@
     </dependency>
   </dependencies>
 
+<!--  <build>-->
+<!--    <plugins>-->
+<!--      <plugin>-->
+<!--        <groupId>org.springframework.boot</groupId>-->
+<!--        <artifactId>spring-boot-maven-plugin</artifactId>-->
+<!--      </plugin>-->
+<!--    </plugins>-->
+<!--  </build>-->
   <build>
     <plugins>
       <plugin>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-maven-plugin</artifactId>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.8.1</version>
+        <configuration>
+          <source>${compile.version}</source>
+          <target>${compile.version}</target>
+          <compilerArgument>-Xlint:unchecked</compilerArgument>
+        </configuration>
       </plugin>
+      <!-- Javadoc -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-javadoc-plugin</artifactId>
+        <version>3.4.0</version>
+        <executions>
+          <execution>
+            <phase>package</phase>
+            <goals>
+              <goal>jar</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+
     </plugins>
   </build>
 
