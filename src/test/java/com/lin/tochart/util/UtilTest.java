@@ -2,6 +2,7 @@ package com.lin.tochart.util;
 
 
 
+import com.lin.tochart.util.chat.*;
 import org.junit.Test;
 
 import java.time.LocalDate;
@@ -13,7 +14,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-public class UtilTest implements PieUtil, LineBarUtil, SankeyUtil, HeatMapUtil, TreeMapUtil, RelationMapUtil{
+public class UtilTest implements PieUtil, LineBarUtil, SankeyUtil, HeatMapUtil, TreeMapUtil, RelationMapUtil {
 
     @Test
     public void test() {

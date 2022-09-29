@@ -1,4 +1,4 @@
-package com.lin.tochart.util;
+package com.lin.tochart.util.chat;
 
 import com.lin.tochart.common.StaticValue;
 
