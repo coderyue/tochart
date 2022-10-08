@@ -1,12 +1,12 @@
 package com.lin.tochart.common;
 
 /**
- * 静态变量及方法
+ * 静态变量
  *
  * @author lin
  * @date 2022/7/24
  **/
-public interface StaticValue extends StaticMethod {
+public interface StaticValue {
 
     //
     //  日期格式化常量

@@ -1,5 +1,6 @@
 package com.lin.tochart.util.chat;
 
+import com.lin.tochart.common.StaticMethod;
 import com.lin.tochart.common.StaticValue;
 
 import java.time.format.DateTimeFormatter;
@@ -15,7 +16,7 @@ import java.util.stream.Collectors;
  * @author lin
  * @date   2022/7/24
  **/
-public interface LineBarUtil extends StaticValue {
+public interface LineBarUtil extends StaticMethod {
 
     /**
      * 返回折线图/柱状图结构
@@ -80,7 +81,8 @@ public interface LineBarUtil extends StaticValue {
         return getMultiLineOrBar(mapList, x, y, value, dataMapList, xData);
     }
 
-    default Map<String, Object> getMultiLineOrBar(List<Map<String, Object>> mapList, String x, String y, String value, List<Map<String, Object>> dataMapList, List<String> xData) {
+    default Map<String, Object> getMultiLineOrBar(List<Map<String, Object>> mapList, String x, String y, String value,
+                                                  List<Map<String, Object>> dataMapList, List<String> xData) {
         Map<Object, Map<Object, Double>> collect = mapList.stream().collect(Collectors.groupingBy(item -> item.get(y),
                 Collectors.groupingBy(item -> item.get(x),
                         Collectors.summingDouble(item -> Double.parseDouble(item.get(value).toString())))));

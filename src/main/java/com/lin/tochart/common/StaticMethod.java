@@ -6,7 +6,12 @@ import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
 
-public interface StaticMethod {
+/**
+ * 静态方法
+ * @author lin
+ * @date   2022/10/8
+ **/
+public interface StaticMethod extends StaticValue {
 
     /**
      * 返回指定格式的DateTimeFormatter
