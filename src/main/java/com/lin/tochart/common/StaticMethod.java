@@ -14,6 +14,27 @@ import java.util.List;
 public interface StaticMethod extends StaticValue {
 
     /**
+     * 返回对应的chronoUnit
+     * @param x_add_unit
+     * @return
+     */
+    default ChronoUnit getAddUnit(String x_add_unit) {
+        if ("day".equals(x_add_unit)) {
+            return ChronoUnit.DAYS;
+        }
+        if ("hour".equals(x_add_unit)) {
+            return ChronoUnit.HOURS;
+        }
+        if ("month".equals(x_add_unit)) {
+            return ChronoUnit.MONTHS;
+        }
+        if ("year".equals(x_add_unit)) {
+            return ChronoUnit.YEARS;
+        }
+        return ChronoUnit.DAYS;
+    }
+
+    /**
      * 返回指定格式的DateTimeFormatter
      * @param pattern
      * @return

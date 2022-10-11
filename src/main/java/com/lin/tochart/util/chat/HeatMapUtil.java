@@ -30,7 +30,7 @@ public interface HeatMapUtil {
         Map<Object, Map<Object, Double>> collect = mapList.stream().collect(Collectors.groupingBy(item -> item.get(y),
                 Collectors.groupingBy(item -> item.get(x), Collectors.summingDouble(item -> Double.parseDouble(item.get(value).toString())))));
 
-        List<List<Object>> vList = new ArrayList<>(xList.size() * yList.size());
+        List<List<Object>> vList = new ArrayList<>(xList.size());
         for (int i = 0; i < yList.size(); i++) {
             for (int j = 0; j < xList.size(); j++) {
                 List<Object> cellData = new ArrayList<>();
