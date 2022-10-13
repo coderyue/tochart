@@ -19,6 +19,7 @@ public interface StaticMethod extends StaticValue {
      * @return
      */
     default ChronoUnit getAddUnit(String x_add_unit) {
+        x_add_unit = x_add_unit.trim();
         if ("day".equals(x_add_unit)) {
             return ChronoUnit.DAYS;
         }

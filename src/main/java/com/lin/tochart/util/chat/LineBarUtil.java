@@ -77,7 +77,7 @@ public interface LineBarUtil extends StaticMethod {
      */
     default Map<String, Object> toMultiLineOrBar(List<Map<String, Object>> mapList, String x, String y, String value) {
         List<Map<String, Object>> dataMapList = new ArrayList<>();
-        List<String> xData = mapList.stream().map(item -> item.get(x).toString()).collect(Collectors.toList());
+        List<String> xData = mapList.stream().map(item -> item.get(x).toString()).distinct().collect(Collectors.toList());
         return getMultiLineOrBar(mapList, x, y, value, dataMapList, xData);
     }
 
