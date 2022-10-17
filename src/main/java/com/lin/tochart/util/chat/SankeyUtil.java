@@ -45,4 +45,31 @@ public interface SankeyUtil {
         return dataMap;
     }
 
+    /**
+     * 获取桑基图，手动分隔source和target
+     * @param mapList 元数据
+     * @param stv     桑基图层级， 最后一级为value对应名称
+     * @return
+     */
+    default Map<String, Object> toSankey(List<Map<String, Object>> mapList, String stv) {
+        String[] split = stv.split(",");
+        String vStr = split[split.length - 1];
+        List<Map<String, Object>> resultMapList = new ArrayList<>(mapList.size() << 1);
+        for (int i = 0, j = i + 1; j < split.length - 1; i++, j++) {
+            int s = i; int t = j;
+            Map<Object, Map<Object, Double>> collect = mapList.stream()
+                    .collect(Collectors.groupingBy(item -> item.get(split[s]) == null ? StaticValue.unKnow : item.get(split[s]),
+                            Collectors.groupingBy(item -> item.get(split[t]) == null ? StaticValue.unKnow : item.get(split[t]),
+                                    Collectors.summingDouble(item -> Double.parseDouble(item.get(vStr).toString())))));
+            collect.forEach((k, v) -> v.forEach((kk, vv) -> {
+                Map<String, Object> tempMap = new HashMap<>();
+                tempMap.put(StaticValue.SOURCE, k);
+                tempMap.put(StaticValue.TARGET, kk);
+                tempMap.put(StaticValue.VALUE, vv);
+                resultMapList.add(tempMap);
+            }));
+        }
+        return toSankey(resultMapList);
+    }
+
 }

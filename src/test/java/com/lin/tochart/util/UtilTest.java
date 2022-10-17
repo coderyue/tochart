@@ -58,6 +58,10 @@ public class UtilTest implements PieUtil, LineBarUtil, SankeyUtil, HeatMapUtil, 
         }).collect(Collectors.toList()));
         System.out.println("sankey" + map3);
 
+        // 桑基图， 手动分隔source和target
+        Map<String, Object> map6 = toSankey(dataMapList, "dataTime,flow,cnt");
+        System.out.println("sankey >>:" + map6);
+
         // 热力图
         Map<String, Object> map4 = toHeatMap(dataMapList, "dataTime", "flow", "cnt");
         System.out.println("heatMap" + map4);

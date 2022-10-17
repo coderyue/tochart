@@ -14,6 +14,15 @@ import java.util.List;
 public interface StaticMethod extends StaticValue {
 
     /**
+     * 保留两位小数
+     * @param d
+     * @return
+     */
+    default String format2Place(Double d) {
+        return String.format("%.2f", d);
+    }
+
+    /**
      * 返回对应的chronoUnit
      * @param x_add_unit
      * @return
