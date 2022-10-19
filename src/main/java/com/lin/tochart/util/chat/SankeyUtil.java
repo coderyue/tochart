@@ -1,5 +1,6 @@
 package com.lin.tochart.util.chat;
 
+import com.lin.tochart.common.StaticMethod;
 import com.lin.tochart.common.StaticValue;
 
 import java.util.ArrayList;
@@ -13,7 +14,7 @@ import java.util.stream.Collectors;
  * @author lin
  * @date   2022/7/25
  **/
-public interface SankeyUtil {
+public interface SankeyUtil extends StaticMethod {
 
 
     /**
@@ -65,7 +66,7 @@ public interface SankeyUtil {
                 Map<String, Object> tempMap = new HashMap<>();
                 tempMap.put(StaticValue.SOURCE, k);
                 tempMap.put(StaticValue.TARGET, kk);
-                tempMap.put(StaticValue.VALUE, vv);
+                tempMap.put(StaticValue.VALUE, format2Place(vv));
                 resultMapList.add(tempMap);
             }));
         }

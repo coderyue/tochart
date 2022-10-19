@@ -1,5 +1,6 @@
 package com.lin.tochart.util.chat;
 
+import com.lin.tochart.common.StaticMethod;
 import com.lin.tochart.common.StaticValue;
 
 import java.util.ArrayList;
@@ -12,7 +13,7 @@ import java.util.Map;
  * @author lin
  * @date   2022/7/24
  **/
-public interface TreeMapUtil {
+public interface TreeMapUtil extends StaticMethod {
 
     /**
      * 获取矩形树图
@@ -45,7 +46,7 @@ public interface TreeMapUtil {
                 Map<String, Object> map = new HashMap<>();
                 ((List<?>) dbValue).forEach(item -> {
                     map.put(StaticValue.NAME, ((Map<String, ?>) item).get(level4));
-                    map.put(StaticValue.VALUE, ((Map<String, ?>) item).get(v));
+                    map.put(StaticValue.VALUE, format2Place(Double.parseDouble(((Map<String, ?>) item).get(v).toString())));
                     resultList.add(map);
                 });
             }
