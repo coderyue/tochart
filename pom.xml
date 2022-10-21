@@ -5,7 +5,7 @@
 
   <groupId>com.lin</groupId>
   <artifactId>tochart</artifactId>
-  <version>0.1</version>
+  <version>0.2</version>
   <name>tochart</name>
   <description>tochart</description>
   <properties>
